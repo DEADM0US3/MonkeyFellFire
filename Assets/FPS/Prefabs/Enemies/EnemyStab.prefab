@@ -69,6 +69,7 @@ GameObject:
   - component: {fileID: 797398738606809810}
   - component: {fileID: 1614318205656627459}
   - component: {fileID: -5071885693388462889}
+  - component: {fileID: 8516080461587058484}
   m_Layer: 0
   m_Name: EnemyStab
   m_TagString: Untagged
@@ -108,61 +109,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelfDestructYHeight: -20
-  PathReachingRadius: 2
   OrientationSpeed: 10
+  PathReachingRadius: 2
   DeathDuration: 0
-  SwapToNextWeapon: 0
-  DelayAfterWeaponSwap: 0
-  EyeColorMaterial: {fileID: 2100000, guid: e6fdfd4e017234d43ac116abee8fa90a, type: 2}
-  DefaultEyeColor: {r: 23.849056, g: 7.292185, b: 0, a: 1}
-  AttackEyeColor: {r: 32, g: 1.4610044, b: 0, a: 1}
-  BodyMaterial: {fileID: 2100000, guid: c3dc5a90c49c99142999f85d6b419d80, type: 2}
-  OnHitBodyGradient:
-    serializedVersion: 2
-    key0: {r: 0, g: 0, b: 0, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 1, g: 1, b: 1, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 15035
-    ctime2: 52621
-    ctime3: 65535
-    ctime4: 65535
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: -1
-    m_NumColorKeys: 4
-    m_NumAlphaKeys: 2
-  FlashOnHitDuration: 0.2
-  DamageTick: {fileID: 8300000, guid: a7fae22399a6e1d448dc0dd2210f1dac, type: 3}
-  DeathVfx: {fileID: 8950624839484268180, guid: 2a8f5052fe50f7b41b17149abb0f7414,
-    type: 3}
-  DeathVfxSpawnPoint: {fileID: 381893446485871685}
-  LootPrefab: {fileID: 2529580269645609534, guid: 9973c412032becb4ca116ca08be62edf,
-    type: 3}
-  DropRate: 1
-  PathReachingRangeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  AttackRangeColor: {r: 1, g: 0, b: 0, a: 1}
-  DetectionRangeColor: {r: 0, g: 0, b: 1, a: 1}
   RandomMovement: 1
   MovementRadius: 10
   ChangeDirectionDelay: 3
-  PatrolPointA: {fileID: 0}
-  PatrolPointB: {fileID: 0}
+  SwapToNextWeapon: 0
+  DelayAfterWeaponSwap: 0
+  LootPrefab: {fileID: 2529580269645609534, guid: 9973c412032becb4ca116ca08be62edf,
+    type: 3}
+  DropRate: 1
+  DeathVfx: {fileID: 8950624839484268180, guid: 2a8f5052fe50f7b41b17149abb0f7414,
+    type: 3}
+  DeathVfxSpawnPoint: {fileID: 381893446485871685}
+  DamageTick: {fileID: 8300000, guid: a7fae22399a6e1d448dc0dd2210f1dac, type: 3}
 --- !u!114 &4752156053906186385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +358,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8516080461587058484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015434656898269652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9b0ce1bb69c96b49a7ac1098a7f5796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: fps.Game::Unity.FPS.Game.Damageable
+  DamageMultiplier: 1
+  SensibilityToSelfdamage: 0.5
 --- !u!1 &2201913640410082181
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,12 +511,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6421371450313891992}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.001, y: 0.598, z: -0.39}
-  m_LocalScale: {x: 0.7315865, y: 0.4269446, z: 1.7180175}
+  m_LocalRotation: {x: -0.7071068, y: 0.00000689451, z: -0.000006475593, w: 0.7071068}
+  m_LocalPosition: {x: -0.0010018811, y: -0.09949014, z: 0}
+  m_LocalScale: {x: 0.7315865, y: 0.42694464, z: 1.7180176}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1713002485363338470}
+  m_Father: {fileID: 6599352780224138354}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4657678879490380143
 MeshFilter:
@@ -1212,7 +1187,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31acca89b6ebfdbbe81185c0da9bee04,
+    - targetCorrespondingSourceObject: {fileID: 5465940246521907071, guid: 31acca89b6ebfdbbe81185c0da9bee04,
         type: 3}
       insertIndex: 0
       addedObject: {fileID: 381893446485871685}
@@ -1241,6 +1216,12 @@ Transform:
 --- !u!95 &4694407207633860252 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 31acca89b6ebfdbbe81185c0da9bee04,
+    type: 3}
+  m_PrefabInstance: {fileID: 1175289772697717517}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6599352780224138354 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5465940246521907071, guid: 31acca89b6ebfdbbe81185c0da9bee04,
     type: 3}
   m_PrefabInstance: {fileID: 1175289772697717517}
   m_PrefabAsset: {fileID: 0}

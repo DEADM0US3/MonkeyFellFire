@@ -105,7 +105,12 @@ namespace Unity.FPS.AI
 
         void UpdateCurrentAiState()
         {
-            // Handle logic 
+            if (m_EnemyController.KnownDetectedTarget == null)
+            {
+                AiState = AIState.Patrol;
+                return;
+            }
+
             switch (AiState)
             {
                 case AIState.Follow:
@@ -113,8 +118,17 @@ namespace Unity.FPS.AI
                     m_EnemyController.OrientTowards(m_EnemyController.KnownDetectedTarget.transform.position);
                     m_EnemyController.OrientWeaponsTowards(m_EnemyController.KnownDetectedTarget.transform.position);
                     break;
+
                 case AIState.Attack:
-                    if (Vector3.Distance(m_EnemyController.KnownDetectedTarget.transform.position,
+                    if (m_EnemyController.DetectionModule == null ||
+                        m_EnemyController.DetectionModule.DetectionSourcePoint == null)
+                    {
+                        Debug.LogError("DetectionModule o DetectionSourcePoint es NULL");
+                        return;
+                    }
+
+                    if (Vector3.Distance(
+                            m_EnemyController.KnownDetectedTarget.transform.position,
                             m_EnemyController.DetectionModule.DetectionSourcePoint.position)
                         >= (AttackStopDistanceRatio * m_EnemyController.DetectionModule.AttackRange))
                     {
@@ -126,10 +140,11 @@ namespace Unity.FPS.AI
                     }
 
                     m_EnemyController.OrientTowards(m_EnemyController.KnownDetectedTarget.transform.position);
-                    m_EnemyController.TryAtack(m_EnemyController.KnownDetectedTarget.transform.position);
+                    m_EnemyController.TryAttack(m_EnemyController.KnownDetectedTarget.transform.position);
                     break;
             }
         }
+
 
         void OnAttack()
         {
