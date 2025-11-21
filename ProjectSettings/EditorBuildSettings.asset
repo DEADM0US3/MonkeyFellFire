@@ -12,11 +12,38 @@ EditorBuildSettings:
     path: Assets/FPS/Scenes/WinScene.unity
     guid: 037d06fbede2b4041a843d9ee6fe750c
   - enabled: 1
+    path: Assets/FPS/Scenes/Ham/ThirdSceneHam.unity
+    guid: d6d6adb96e51bab4abf12a6347dbf35f
+  - enabled: 1
+    path: Assets/FPS/Scenes/Ham/MainSceneHam.unity
+    guid: 8189afc3836b856ba8e098b0d3df8843
+  - enabled: 1
+    path: Assets/FPS/Scenes/Ham/SecondarySceneHam.unity
+    guid: d07697f3c3e25202892977878f2c5aa4
+  - enabled: 1
+    path: Assets/FPS/Scenes/Ham/LoseSceneThird.unity
+    guid: 3cfcfc391cdbfb4f3b480c474656ac5e
+  - enabled: 1
+    path: Assets/FPS/Scenes/Ham/LoseSceneSecond.unity
+    guid: 3b69ab829237516819cbf530542f687f
+  - enabled: 1
+    path: Assets/FPS/Scenes/MonoAcero/SecondarySceneAcero.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/FPS/Scenes/MonoAcero/ThirdSceneAcero.unity
+    guid: fe888c949d7310f19bab1d578f847a04
+  - enabled: 1
+    path: Assets/FPS/Scenes/Ham/LoseSceneFirst.unity
+    guid: e4d6812d5a252fe558f0d63530d1dcea
+  - enabled: 1
     path: Assets/FPS/Scenes/LoseScene.unity
     guid: 72e5c65a45893714484002914e3fd521
   - enabled: 1
-    path: Assets/FPS/Scenes/MainScene.unity
+    path: Assets/FPS/Scenes/MonoAcero/MainSceneAcero.unity
     guid: d794a2ef8ba31d847ad3c19d03e2ddb9
+  - enabled: 1
+    path: Assets/FPS/Scenes/GameOptions.unity
+    guid: a1e3d5732951b9f048e7bb4ae44790f6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 05b4aeda8533b704f9be24b556a43d98,
       type: 3}
