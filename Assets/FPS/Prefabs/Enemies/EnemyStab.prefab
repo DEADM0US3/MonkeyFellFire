@@ -66,7 +66,6 @@ GameObject:
   - component: {fileID: 3464315327790461765}
   - component: {fileID: 7406548990343174644}
   - component: {fileID: 6449686686394465367}
-  - component: {fileID: 797398738606809810}
   - component: {fileID: 1614318205656627459}
   - component: {fileID: -5071885693388462889}
   m_Layer: 0
@@ -160,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27364eefd6dd0341ba72a3bfc0d9727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 20
+  MaxHealth: 10
   CriticalHealthRatio: 0.3
 --- !u!114 &3464315327790461765
 MonoBehaviour:
@@ -214,21 +213,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Affiliation: 0
   AimPoint: {fileID: 381893446485871685}
---- !u!114 &797398738606809810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2015434656898269652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14b7698ec50c85c44a849a968dc1d57d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CompassMarkerPrefab: {fileID: 4125838790012652590, guid: 513785daf84f2a243b0cda079e6835cd,
-    type: 3}
-  TextDirection: 
 --- !u!82 &1614318205656627459
 AudioSource:
   m_ObjectHideFlags: 0
@@ -464,7 +448,7 @@ MonoBehaviour:
   DetectionRange: 20
   AttackRange: 10
   KnownTargetTimeout: 12
-  Animator: {fileID: 0}
+  Animator: {fileID: 4694407207633860252}
 --- !u!1 &6421371450313891992
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,7 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageMultiplier: 1
-  SensibilityToSelfdamage: 0.5
+  SensibilityToSelfdamage: 1
 --- !u!136 &7506613954191665916
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -544,81 +528,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 2
   m_Center: {x: 0, y: 6.448377e-17, z: 0.1564461}
---- !u!1 &7448957880145452174
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3253201880669482562}
-  - component: {fileID: 2915308685551445665}
-  - component: {fileID: 3804506681843464078}
-  m_Layer: 5
-  m_Name: ImageBackground
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &3253201880669482562
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7448957880145452174}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.518}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1713002485363338470}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0030904736, y: 1.8360001}
-  m_SizeDelta: {x: 1, y: 0.1}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2915308685551445665
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7448957880145452174}
-  m_CullTransparentMesh: 0
---- !u!114 &3804506681843464078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7448957880145452174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3e7d439637d58744ba13be1b4b74413b, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &7471052639545543870
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,7 +558,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -0.518}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8078929863353424972}
   m_Father: {fileID: 1713002485363338470}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -943,16 +853,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8350463800019646436}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.518}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1713002485363338470}
+  m_Father: {fileID: 2517379088827036479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0030904736, y: 1.8360001}
-  m_SizeDelta: {x: 0.98, y: 0.080000006}
+  m_AnchoredPosition: {x: 0, y: -0}
+  m_SizeDelta: {x: -0.01999998, y: -0.019999996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8865950977894298914
 CanvasRenderer:
@@ -1177,14 +1087,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31acca89b6ebfdbbe81185c0da9bee04,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3253201880669482562}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31acca89b6ebfdbbe81185c0da9bee04,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8078929863353424972}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31acca89b6ebfdbbe81185c0da9bee04,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 3479417152427660001}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31acca89b6ebfdbbe81185c0da9bee04,
         type: 3}
@@ -1239,7 +1141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: fps.Game::Unity.FPS.Game.Damageable
   DamageMultiplier: 1
-  SensibilityToSelfdamage: 0.5
+  SensibilityToSelfdamage: 1
 --- !u!95 &4694407207633860252 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 31acca89b6ebfdbbe81185c0da9bee04,
@@ -1271,4 +1173,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: fps.Game::Unity.FPS.Game.Damageable
   DamageMultiplier: 1
-  SensibilityToSelfdamage: 0.5
+  SensibilityToSelfdamage: 0.547
