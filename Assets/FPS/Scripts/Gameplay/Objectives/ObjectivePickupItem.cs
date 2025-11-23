@@ -22,7 +22,7 @@ namespace Unity.FPS.Gameplay
 
             // this will trigger the objective completion
             // it works even if the player can't pickup the item (i.e. objective pickup healthpack while at full heath)
-            CompleteObjective(string.Empty, string.Empty, "Objective complete : " + Title);
+            CompleteObjective(string.Empty, string.Empty, "Objetivo completado : " + Title);
 
             if (gameObject)
             {
