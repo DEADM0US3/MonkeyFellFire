@@ -132,9 +132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 1895352925869244465}
-  AttackStopDistanceRatio: 0
-  RandomHitSparks:
-  - {fileID: 0}
+  AttackStopDistanceRatio: 0.575
+  RandomHitSparks: []
   OnDetectVfx:
   - {fileID: 0}
   OnDetectSfx: {fileID: 8300000, guid: 25722734eeccba042a18e26e376ca542, type: 3}
