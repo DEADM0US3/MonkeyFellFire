@@ -16,13 +16,16 @@ EditorBuildSettings:
     guid: d6d6adb96e51bab4abf12a6347dbf35f
   - enabled: 1
     path: Assets/FPS/Scenes/Ham/MainSceneHam.unity
-    guid: 8189afc3836b856ba8e098b0d3df8843
+    guid: 2cc017fe92b5b71e092bb45636b271a8
   - enabled: 1
     path: Assets/FPS/Scenes/Ham/SecondarySceneHam.unity
     guid: d07697f3c3e25202892977878f2c5aa4
   - enabled: 1
     path: Assets/FPS/Scenes/Ham/LoseSceneThird.unity
     guid: 3cfcfc391cdbfb4f3b480c474656ac5e
+  - enabled: 1
+    path: Assets/FPS/Scenes/LeaderBoard.unity
+    guid: a19030f58e53121378340fe510ecdd59
   - enabled: 1
     path: Assets/FPS/Scenes/Ham/LoseSceneSecond.unity
     guid: 3b69ab829237516819cbf530542f687f
@@ -40,10 +43,7 @@ EditorBuildSettings:
     guid: 72e5c65a45893714484002914e3fd521
   - enabled: 1
     path: Assets/FPS/Scenes/MonoAcero/MainSceneAcero.unity
-    guid: d794a2ef8ba31d847ad3c19d03e2ddb9
-  - enabled: 1
-    path: Assets/FPS/Scenes/LeaderBoard.unity
-    guid: a19030f58e53121378340fe510ecdd59
+    guid: b6a659cc74806cff0af884d19cd9ca28
   - enabled: 1
     path: Assets/FPS/Scenes/GameOptions.unity
     guid: a1e3d5732951b9f048e7bb4ae44790f6
