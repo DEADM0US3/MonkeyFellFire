@@ -42,6 +42,9 @@ EditorBuildSettings:
     path: Assets/FPS/Scenes/MonoAcero/MainSceneAcero.unity
     guid: d794a2ef8ba31d847ad3c19d03e2ddb9
   - enabled: 1
+    path: Assets/FPS/Scenes/LeaderBoard.unity
+    guid: a19030f58e53121378340fe510ecdd59
+  - enabled: 1
     path: Assets/FPS/Scenes/GameOptions.unity
     guid: a1e3d5732951b9f048e7bb4ae44790f6
   m_configObjects:

@@ -11,13 +11,6 @@ namespace Unity.FPS.Gameplay
 
         [Tooltip("List of GameObjects representing the fuel cells on the weapon")]
         public GameObject[] FuelCells;
-
-        [Tooltip("Cell local position when used")]
-        public Vector3 FuelCellUsedPosition;
-
-        [Tooltip("Cell local position before use")]
-        public Vector3 FuelCellUnusedPosition = new Vector3(0f, -0.1f, 0f);
-
         WeaponController m_Weapon;
         bool[] m_FuelCellsCooled;
 
@@ -38,11 +31,7 @@ namespace Unity.FPS.Gameplay
         {
             if (SimultaneousFuelCellsUsage)
             {
-                for (int i = 0; i < FuelCells.Length; i++)
-                {
-                    FuelCells[i].transform.localPosition = Vector3.Lerp(FuelCellUsedPosition, FuelCellUnusedPosition,
-                        m_Weapon.CurrentAmmoRatio);
-                }
+                
             }
             else
             {
@@ -55,9 +44,6 @@ namespace Unity.FPS.Gameplay
 
                     float value = Mathf.InverseLerp(lim1, lim2, m_Weapon.CurrentAmmoRatio);
                     value = Mathf.Clamp01(value);
-
-                    FuelCells[i].transform.localPosition =
-                        Vector3.Lerp(FuelCellUsedPosition, FuelCellUnusedPosition, value);
                 }
             }
         }

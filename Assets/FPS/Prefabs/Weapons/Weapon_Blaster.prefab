@@ -145,8 +145,8 @@ MonoBehaviour:
   AutomaticReload: 1
   HasPhysicalBullets: 0
   ClipSize: 30
-  ShellCasing: {fileID: 0}
-  EjectionPort: {fileID: 0}
+  ShellCasing: {fileID: 2225486910712267859}
+  EjectionPort: {fileID: 8334323006752503713}
   ShellCasingEjectionForce: 2
   ShellPoolSize: 1
   AmmoReloadRate: 16
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2225486910712267859}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc94179cece5b4e41ae9298ddbf83fdf, type: 3}
   m_Name: 
