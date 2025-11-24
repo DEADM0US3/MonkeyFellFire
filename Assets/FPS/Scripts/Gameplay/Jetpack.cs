@@ -24,16 +24,16 @@ namespace Unity.FPS.Gameplay
         public float JetpackDownwardVelocityCancelingFactor = 1f;
 
         [Header("Durations")] [Tooltip("Time it takes to consume all the jetpack fuel")]
-        public float ConsumeDuration = 1.5f;
+        public float ConsumeDuration = 4f;
 
         [Tooltip("Time it takes to completely refill the jetpack while on the ground")]
-        public float RefillDurationGrounded = 2f;
+        public float RefillDurationGrounded = 3f;
 
         [Tooltip("Time it takes to completely refill the jetpack while in the air")]
-        public float RefillDurationInTheAir = 5f;
+        public float RefillDurationInTheAir = 6f;
 
         [Tooltip("Delay after last use before starting to refill")]
-        public float RefillDelay = 1f;
+        public float RefillDelay = 2f;
 
         [Header("Audio")] [Tooltip("Sound played when using the jetpack")]
         public AudioClip JetpackSfx;

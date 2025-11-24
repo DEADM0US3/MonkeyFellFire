@@ -475,6 +475,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8323776800172828795, guid: 3439b4874b7b44e4eb2216314c46b85c,
+        type: 3}
+      propertyPath: MaxAmmo
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8323776800172828795, guid: 3439b4874b7b44e4eb2216314c46b85c,
+        type: 3}
+      propertyPath: WeaponName
+      value: Lanza-Cocos
+      objectReference: {fileID: 0}
     - target: {fileID: 8589691514426494772, guid: 3439b4874b7b44e4eb2216314c46b85c,
         type: 3}
       propertyPath: m_Layer

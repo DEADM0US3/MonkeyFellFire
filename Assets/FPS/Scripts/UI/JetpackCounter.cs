@@ -2,6 +2,7 @@
 using Unity.FPS.Gameplay;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Unity.FPS.UI
 {
@@ -15,6 +16,9 @@ namespace Unity.FPS.UI
 
         [Tooltip("Component to animate the color when empty or full")]
         public FillBarColorChange FillBarColorChange;
+
+        [Tooltip("Texto que muestra el porcentaje de combustible")]
+        public TextMeshProUGUI JetpackPercentText;
 
         Jetpack m_Jetpack;
 
@@ -34,6 +38,7 @@ namespace Unity.FPS.UI
             {
                 JetpackFillImage.fillAmount = m_Jetpack.CurrentFillRatio;
                 FillBarColorChange.UpdateVisual(m_Jetpack.CurrentFillRatio);
+                JetpackPercentText.text = Mathf.RoundToInt(m_Jetpack.CurrentFillRatio * 100f).ToString();
             }
         }
     }

@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27364eefd6dd0341ba72a3bfc0d9727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 10
+  MaxHealth: 50
   CriticalHealthRatio: 0.3
 --- !u!114 &3464315327790461765
 MonoBehaviour:
@@ -172,7 +172,7 @@ MonoBehaviour:
   Health: {fileID: 6370966072896210225}
   HealthBarImage: {fileID: 5299349968446827641}
   HealthBarPivot: {fileID: 3175718064325614203}
-  HideFullHealthBar: 1
+  HideFullHealthBar: 0
 --- !u!195 &7406548990343174644
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Unity.FPS.UI
 {
@@ -13,7 +14,7 @@ namespace Unity.FPS.UI
         public GameObject MenuRoot;
 
         [Tooltip("Master volume when menu is open")] [Range(0.001f, 1f)]
-        public float VolumeWhenMenuOpen = 0.5f;
+        public float VolumeWhenMenuOpen = 0.3f;
 
         [Tooltip("Slider component for look sensitivity")]
         public Slider LookSensitivitySlider;
@@ -29,6 +30,12 @@ namespace Unity.FPS.UI
 
         [Tooltip("GameObject for the controls")]
         public GameObject ControlImage;
+
+        public void BackToMainMenu()
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("MainScene");
+        }
 
         PlayerInputHandler m_PlayerInputsHandler;
         Health m_PlayerHealth;
