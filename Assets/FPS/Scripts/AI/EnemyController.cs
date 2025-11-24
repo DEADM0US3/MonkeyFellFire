@@ -134,7 +134,11 @@ namespace Unity.FPS.AI
             Vector3 random = transform.position + Random.insideUnitSphere * MovementRadius;
             if (NavMesh.SamplePosition(random, out NavMeshHit hit, MovementRadius, NavMesh.AllAreas))
             {
-                agent.SetDestination(hit.position);
+                if (agent.isOnNavMesh)
+                {
+                    agent.SetDestination(hit.position);
+                }
+
                 lastMoveTime = Time.time;
             }
         }

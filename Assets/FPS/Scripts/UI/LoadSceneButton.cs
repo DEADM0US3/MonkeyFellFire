@@ -1,5 +1,6 @@
-﻿using Unity.FPS.Game;
+using Unity.FPS.Game;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -29,6 +30,23 @@ namespace Unity.FPS.UI
 
         public void LoadTargetScene()
         {
+
+            if(SceneName == "IntroMenu")
+            {
+             var timer = FindObjectOfType<GameTimer>();
+             
+             
+                if (timer != null)
+                {
+                        Destroy(timer.timerText.transform.root.gameObject);
+                        Destroy(timer.gameObject);
+
+                }
+   
+            }
+
+
+
             SceneManager.LoadScene(SceneName);
         }
     }

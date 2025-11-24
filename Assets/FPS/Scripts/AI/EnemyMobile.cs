@@ -13,6 +13,7 @@ namespace Unity.FPS.AI
             Attack,
         }
 
+        [Header("Components")]
         public Animator Animator;
 
         [Tooltip("Fraction of the enemy's attack range at which it will stop moving towards target while attacking")]
@@ -22,13 +23,18 @@ namespace Unity.FPS.AI
         [Tooltip("The random hit damage effects")]
         public ParticleSystem[] RandomHitSparks;
 
+        [Tooltip("Particle systems played when detecting the player")]
         public ParticleSystem[] OnDetectVfx;
         public AudioClip OnDetectSfx;
 
-        [Header("Sound")] public AudioClip MovementSound;
+        [Header("Sound")]
+        public AudioClip MovementSound;
         public MinMaxFloat PitchDistortionMovementSpeed;
 
+        // State
         public AIState AiState { get; private set; }
+
+        // Internal refs
         EnemyController m_EnemyController;
         AudioSource m_AudioSource;
 
@@ -40,14 +46,17 @@ namespace Unity.FPS.AI
 
         void Start()
         {
+            // Cache controller
             m_EnemyController = GetComponent<EnemyController>();
-            DebugUtility.HandleErrorIfNullGetComponent<EnemyController, EnemyMobile>(m_EnemyController, this,
-                gameObject);
+            if (m_EnemyController == null)
+            {
+                Debug.LogError($"EnemyMobile on '{name}' requires EnemyController but none was found. Disabling EnemyMobile.");
+                enabled = false;
+                return;
+            }
 
-            //Yo lo ando agregando para poder ac
-            // uchillar
+            // Subscribe safely
             m_EnemyController.onStab += OnStab;
-
             m_EnemyController.onAttack += OnAttack;
             m_EnemyController.onDetectedTarget += OnDetectedTarget;
             m_EnemyController.onLostTarget += OnLostTarget;
@@ -56,30 +65,79 @@ namespace Unity.FPS.AI
             // Start patrolling
             AiState = AIState.Patrol;
 
-            // adding a audio source to play the movement sound on it
+            // AudioSource (optional)
             m_AudioSource = GetComponent<AudioSource>();
-            DebugUtility.HandleErrorIfNullGetComponent<AudioSource, EnemyMobile>(m_AudioSource, this, gameObject);
-            m_AudioSource.clip = MovementSound;
-            m_AudioSource.Play();
+            if (m_AudioSource == null)
+            {
+                // Not fatal: we just won't play movement sound
+                Debug.LogWarning($"EnemyMobile on '{name}' doesn't have an AudioSource. Movement sound will be skipped.");
+            }
+            else
+            {
+                if (MovementSound != null)
+                {
+                    m_AudioSource.clip = MovementSound;
+                    m_AudioSource.loop = true;
+                    m_AudioSource.Play();
+                }
+                else
+                {
+                    // No clip assigned; don't try to play
+                    m_AudioSource.clip = null;
+                }
+            }
+
+            // Animator check
+            if (Animator == null)
+            {
+                Debug.LogWarning($"EnemyMobile on '{name}' has no Animator assigned. Animation parameters will be skipped.");
+            }
         }
 
         void Update()
         {
+            if (m_EnemyController == null) return;
+
             UpdateAiStateTransitions();
             UpdateCurrentAiState();
 
-            float moveSpeed = m_EnemyController.NavMeshAgent.velocity.magnitude;
+            // movement-based animator / audio updates
+            var agent = m_EnemyController.NavMeshAgent;
+            float moveSpeed = 0f;
+            float agentMaxSpeed = 1f;
 
-            // Update animator speed parameter
-            Animator.SetFloat(k_AnimMoveSpeedParameter, moveSpeed);
+            if (agent != null)
+            {
+                // safety: if agent not on navmesh, consider speed zero
+                if (agent.isOnNavMesh)
+                {
+                    moveSpeed = agent.velocity.magnitude;
+                    agentMaxSpeed = Mathf.Max(0.0001f, agent.speed);
+                }
+                else
+                {
+                    moveSpeed = 0f;
+                    agentMaxSpeed = 1f;
+                }
+            }
 
-            // changing the pitch of the movement sound depending on the movement speed
-            m_AudioSource.pitch = Mathf.Lerp(PitchDistortionMovementSpeed.Min, PitchDistortionMovementSpeed.Max,
-                moveSpeed / m_EnemyController.NavMeshAgent.speed);
+            if (Animator != null)
+            {
+                Animator.SetFloat(k_AnimMoveSpeedParameter, moveSpeed);
+            }
+
+            if (m_AudioSource != null && m_AudioSource.clip != null)
+            {
+                // normalize pitch between Min and Max using agent speed proportion
+                float t = Mathf.Clamp01(moveSpeed / agentMaxSpeed);
+                m_AudioSource.pitch = Mathf.Lerp(PitchDistortionMovementSpeed.Min, PitchDistortionMovementSpeed.Max, t);
+            }
         }
 
         void UpdateAiStateTransitions()
         {
+            if (m_EnemyController == null) return;
+
             // Handle transitions 
             switch (AiState)
             {
@@ -88,7 +146,10 @@ namespace Unity.FPS.AI
                     if (m_EnemyController.IsSeeingTarget && m_EnemyController.IsTargetInAttackRange)
                     {
                         AiState = AIState.Attack;
-                        m_EnemyController.SetNavDestination(transform.position);
+                        // stop movement while attacking
+                        var agent = m_EnemyController.NavMeshAgent;
+                        if (agent != null && agent.isOnNavMesh)
+                            agent.SetDestination(transform.position);
                     }
 
                     break;
@@ -105,6 +166,8 @@ namespace Unity.FPS.AI
 
         void UpdateCurrentAiState()
         {
+            if (m_EnemyController == null) return;
+
             if (m_EnemyController.KnownDetectedTarget == null)
             {
                 AiState = AIState.Patrol;
@@ -114,7 +177,7 @@ namespace Unity.FPS.AI
             switch (AiState)
             {
                 case AIState.Follow:
-                    m_EnemyController.SetNavDestination(m_EnemyController.KnownDetectedTarget.transform.position);
+                    SafeSetNavDestinationToTargetPosition();
                     m_EnemyController.OrientTowards(m_EnemyController.KnownDetectedTarget.transform.position);
                     m_EnemyController.OrientWeaponsTowards(m_EnemyController.KnownDetectedTarget.transform.position);
                     break;
@@ -123,20 +186,26 @@ namespace Unity.FPS.AI
                     if (m_EnemyController.DetectionModule == null ||
                         m_EnemyController.DetectionModule.DetectionSourcePoint == null)
                     {
-                        Debug.LogError("DetectionModule o DetectionSourcePoint es NULL");
+                        Debug.LogError($"EnemyMobile ({name}): DetectionModule or DetectionSourcePoint is null");
                         return;
                     }
 
-                    if (Vector3.Distance(
-                            m_EnemyController.KnownDetectedTarget.transform.position,
-                            m_EnemyController.DetectionModule.DetectionSourcePoint.position)
-                        >= (AttackStopDistanceRatio * m_EnemyController.DetectionModule.AttackRange))
+                    float distToTarget = Vector3.Distance(
+                        m_EnemyController.KnownDetectedTarget.transform.position,
+                        m_EnemyController.DetectionModule.DetectionSourcePoint.position);
+
+                    if (distToTarget >= (AttackStopDistanceRatio * m_EnemyController.DetectionModule.AttackRange))
                     {
-                        m_EnemyController.SetNavDestination(m_EnemyController.KnownDetectedTarget.transform.position);
+                        SafeSetNavDestinationToTargetPosition();
                     }
                     else
                     {
-                        m_EnemyController.SetNavDestination(transform.position);
+                        // Stop moving (set destination to self if agent available)
+                        var agent = m_EnemyController.NavMeshAgent;
+                        if (agent != null && agent.isOnNavMesh)
+                        {
+                            agent.SetDestination(transform.position);
+                        }
                     }
 
                     m_EnemyController.OrientTowards(m_EnemyController.KnownDetectedTarget.transform.position);
@@ -145,15 +214,38 @@ namespace Unity.FPS.AI
             }
         }
 
+        void SafeSetNavDestinationToTargetPosition()
+        {
+            if (m_EnemyController == null || m_EnemyController.KnownDetectedTarget == null) return;
+
+            var agent = m_EnemyController.NavMeshAgent;
+            if (agent == null)
+            {
+                // no agent to move
+                return;
+            }
+
+            if (!agent.isOnNavMesh)
+            {
+                // if agent is not placed on navmesh, try to warp it to current position if reasonable,
+                // or skip setting destination.
+                Debug.LogWarning($"EnemyMobile ({name}): NavMeshAgent is not on NavMesh. Skipping SetDestination.");
+                return;
+            }
+
+            agent.SetDestination(m_EnemyController.KnownDetectedTarget.transform.position);
+        }
 
         void OnAttack()
         {
-            Animator.SetTrigger(k_AnimAttackParameter);
+            if (Animator != null)
+                Animator.SetTrigger(k_AnimAttackParameter);
         }
 
         void OnStab()
         {
-            Animator.SetTrigger(k_AnimStabParameter);
+            if (Animator != null)
+                Animator.SetTrigger(k_AnimStabParameter);
         }
 
         void OnDetectedTarget()
@@ -163,17 +255,36 @@ namespace Unity.FPS.AI
                 AiState = AIState.Follow;
             }
 
-            for (int i = 0; i < OnDetectVfx.Length; i++)
+            // Play detection VFX safely
+            if (OnDetectVfx != null && OnDetectVfx.Length > 0)
             {
-                OnDetectVfx[i].Play();
+                for (int i = 0; i < OnDetectVfx.Length; i++)
+                {
+                    var ps = OnDetectVfx[i];
+                    if (ps != null)
+                    {
+                        ps.Play();
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"EnemyMobile ({name}): OnDetectVfx[{i}] is null.");
+                    }
+                }
+            }
+            else
+            {
+                // only warn once; this can happen if prefab lacks VFX
+                Debug.LogWarning($"EnemyMobile ({name}): No OnDetectVfx assigned.");
             }
 
-            if (OnDetectSfx)
+            // Play SFX if available
+            if (OnDetectSfx != null)
             {
                 AudioUtility.CreateSFX(OnDetectSfx, transform.position, AudioUtility.AudioGroups.EnemyDetection, 1f);
             }
 
-            Animator.SetBool(k_AnimAlertedParameter, true);
+            if (Animator != null)
+                Animator.SetBool(k_AnimAlertedParameter, true);
         }
 
         void OnLostTarget()
@@ -183,23 +294,33 @@ namespace Unity.FPS.AI
                 AiState = AIState.Patrol;
             }
 
-            for (int i = 0; i < OnDetectVfx.Length; i++)
+            if (OnDetectVfx != null && OnDetectVfx.Length > 0)
             {
-                OnDetectVfx[i].Stop();
+                for (int i = 0; i < OnDetectVfx.Length; i++)
+                {
+                    var ps = OnDetectVfx[i];
+                    if (ps != null)
+                    {
+                        ps.Stop();
+                    }
+                }
             }
 
-            Animator.SetBool(k_AnimAlertedParameter, false);
+            if (Animator != null)
+                Animator.SetBool(k_AnimAlertedParameter, false);
         }
 
         void OnDamaged()
         {
-            if (RandomHitSparks.Length > 0)
+            if (RandomHitSparks != null && RandomHitSparks.Length > 0)
             {
-                int n = Random.Range(0, RandomHitSparks.Length - 1);
-                RandomHitSparks[n].Play();
+                int n = Random.Range(0, RandomHitSparks.Length); // correct range
+                if (RandomHitSparks[n] != null)
+                    RandomHitSparks[n].Play();
             }
 
-            Animator.SetTrigger(k_AnimOnDamagedParameter);
+            if (Animator != null)
+                Animator.SetTrigger(k_AnimOnDamagedParameter);
         }
     }
 }

@@ -12,21 +12,69 @@ public class GameTimer : MonoBehaviour
 
     public Text timerText;
 
+    private static GameObject persistentCanvas;
+
     private float timer = 0f;
     private bool isRunning = true;
 
     void Awake()
     {
+        // SINGLETON DEL TIMER
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            DontDestroyOnLoad(timerText.transform.root.gameObject); // Mantiene el canvas entero
+            SceneManager.sceneLoaded += OnSceneLoaded;  // <── IMPORTANTE
         }
         else
         {
             Destroy(gameObject);
             return;
+        }
+
+        // SINGLETON DEL CANVAS
+        RegisterCanvas();
+    }
+
+    void RegisterCanvas()
+    {
+        var canvasRoot = timerText.transform.root.gameObject;
+
+        if (persistentCanvas == null)
+        {
+            persistentCanvas = canvasRoot;
+            DontDestroyOnLoad(persistentCanvas);
+        }
+        else if (persistentCanvas != canvasRoot)
+        {
+            // Destruir Canvas duplicado
+            Destroy(canvasRoot);
+        }
+    }
+
+    // CUANDO CAMBIA DE ESCENA, REVISAR SI LA ESCENA TRAE UN TIMER NUEVO
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Intentar encontrar un nuevo timer en la escena
+        GameTimer[] timers = FindObjectsOfType<GameTimer>();
+
+        foreach (var t in timers)
+        {
+            if (t != Instance)
+            {
+                Destroy(t.gameObject);
+            }
+        }
+
+        // Intentar encontrar un nuevo Canvas con otro timerText
+        var allTexts = FindObjectsOfType<Text>();
+
+        foreach (var txt in allTexts)
+        {
+            if (txt != timerText && txt.name == timerText.name)
+            {
+                Destroy(txt.transform.root.gameObject);
+            }
         }
     }
 

@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27364eefd6dd0341ba72a3bfc0d9727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 80
   CriticalHealthRatio: 0.3
 --- !u!114 &3464315327790461765
 MonoBehaviour:
@@ -779,9 +779,7 @@ MonoBehaviour:
   AutomaticReload: 1
   HasPhysicalBullets: 1
   ClipSize: 10
-  ShellCasing: {fileID: 0}
-  EjectionPort: {fileID: 0}
-  ShellCasingEjectionForce: 5
+  ShellCasingEjectionForce: 4.84
   ShellPoolSize: 30
   AmmoReloadRate: 0.5
   AmmoReloadDelay: 1

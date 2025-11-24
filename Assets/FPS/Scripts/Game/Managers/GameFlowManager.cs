@@ -77,6 +77,23 @@ namespace Unity.FPS.Game
             if (win)
             {
                 m_SceneToLoad = WinSceneName;
+                
+                if (WinSceneName == "WinScene")
+                {
+                    GameTimer timer = FindObjectOfType<GameTimer>();
+
+                    if (timer != null)
+                    {
+                        timer.StopTimer();
+                        Destroy(timer.gameObject);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("❌ GameTimer no existe en esta escena.");
+                    }
+                }
+
+
                 m_TimeLoadEndGameScene = Time.time + EndSceneLoadDelay + DelayBeforeFadeToBlack;
 
                 // play a sound on win

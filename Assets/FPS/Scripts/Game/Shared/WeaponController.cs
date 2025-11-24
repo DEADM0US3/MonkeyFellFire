@@ -106,10 +106,6 @@ namespace Unity.FPS.Game
         [Tooltip("Number of bullets in a clip")]
         public int ClipSize = 30;
         [Tooltip("Bullet Shell Casing")]
-        public GameObject ShellCasing;
-        [Tooltip("Weapon Ejection Port for physical ammo")]
-        public Transform EjectionPort;
-        [Tooltip("Force applied on the shell")]
         [Range(0.0f, 5.0f)] public float ShellCasingEjectionForce = 2.0f;
         [Tooltip("Maximum number of shell that can be spawned before reuse")]
         [Range(1, 30)] public int ShellPoolSize = 1;
@@ -217,9 +213,6 @@ namespace Unity.FPS.Game
 
                 for (int i = 0; i < ShellPoolSize; i++)
                 {
-                    GameObject shell = Instantiate(ShellCasing, transform);
-                    shell.SetActive(false);
-                    m_PhysicalAmmoPool.Enqueue(shell.GetComponent<Rigidbody>());
                 }
             }
         }
@@ -230,8 +223,6 @@ namespace Unity.FPS.Game
         {
             Rigidbody nextShell = m_PhysicalAmmoPool.Dequeue();
 
-            nextShell.transform.position = EjectionPort.transform.position;
-            nextShell.transform.rotation = EjectionPort.transform.rotation;
             nextShell.gameObject.SetActive(true);
             nextShell.transform.SetParent(null);
             nextShell.collisionDetectionMode = CollisionDetectionMode.Continuous;
