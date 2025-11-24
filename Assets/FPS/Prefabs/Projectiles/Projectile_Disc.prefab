@@ -208,8 +208,8 @@ MonoBehaviour:
     Min: {x: 0.5, y: 0.5, z: 0.5}
     Max: {x: 0.8, y: 0.8, z: 0.8}
   Color:
-    Min: {r: 0, g: 2, b: 0.08890152, a: 1}
-    Max: {r: 0, g: 1.9999998, b: 0.32460728, a: 1}
+    Min: {r: 1, g: 1, b: 1, a: 1}
+    Max: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1945832826066038730
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +268,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b4f29d2b8d27495478384372a6e55304, type: 2}
+  - {fileID: 2100000, guid: a7baa8fdcb831b44d87d70b1e6941b39, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

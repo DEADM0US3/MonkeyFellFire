@@ -2,6 +2,7 @@
 using Unity.FPS.Gameplay;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Unity.FPS.UI
 {
@@ -10,6 +11,8 @@ namespace Unity.FPS.UI
         [Tooltip("Image component dispplaying current health")]
         public Image HealthFillImage;
 
+        [Tooltip("Componente de texto para mostrar la vida numérica")]
+        public TextMeshProUGUI HealthText;
         Health m_PlayerHealth;
 
         void Start()
@@ -28,6 +31,10 @@ namespace Unity.FPS.UI
         {
             // update health bar value
             HealthFillImage.fillAmount = m_PlayerHealth.CurrentHealth / m_PlayerHealth.MaxHealth;
+            if (HealthText != null)
+            {
+                HealthText.text = Mathf.CeilToInt(m_PlayerHealth.CurrentHealth).ToString();
+            }
         }
     }
 }

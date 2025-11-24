@@ -20,16 +20,18 @@ namespace Unity.FPS.UI
         [Tooltip("Image component to display fill ratio")]
         public Image AmmoFillImage;
 
-        [Tooltip("Text for Weapon index")] 
+        [Tooltip("Text for Weapon index")]
         public TextMeshProUGUI WeaponIndexText;
 
-        [Tooltip("Text for Bullet Counter")] 
+        [Tooltip("Text for Bullet Counter")]
         public TextMeshProUGUI BulletCounter;
 
         [Tooltip("Reload Text for Weapons with physical bullets")]
         public RectTransform Reload;
 
-        [Header("Selection")] [Range(0, 1)] [Tooltip("Opacity when weapon not selected")]
+        [Header("Selection")]
+        [Range(0, 1)]
+        [Tooltip("Opacity when weapon not selected")]
         public float UnselectedOpacity = 0.5f;
 
         [Tooltip("Scale when weapon not selected")]
@@ -37,7 +39,8 @@ namespace Unity.FPS.UI
 
         [Tooltip("Root for the control keys")] public GameObject ControlKeysRoot;
 
-        [Header("Feedback")] [Tooltip("Component to animate the color when empty or full")]
+        [Header("Feedback")]
+        [Tooltip("Component to animate the color when empty or full")]
         public FillBarColorChange FillBarColorChange;
 
         [Tooltip("Sharpness for the fill ratio movements")]
@@ -86,7 +89,18 @@ namespace Unity.FPS.UI
             AmmoFillImage.fillAmount = Mathf.Lerp(AmmoFillImage.fillAmount, currenFillRatio,
                 Time.deltaTime * AmmoFillMovementSharpness);
 
-            BulletCounter.text = m_Weapon.GetCarriedPhysicalBullets().ToString();
+            int currentAmmoInClip = Mathf.RoundToInt(m_Weapon.GetCurrentAmmo());
+
+            int ammoInReserve = Mathf.RoundToInt(m_Weapon.GetCarriedPhysicalBullets());
+
+            if (m_Weapon.HasPhysicalBullets)
+            {
+                BulletCounter.text = $"{currentAmmoInClip} / {ammoInReserve}";
+            }
+            else
+            {
+                BulletCounter.text = "∞";
+            }
 
             bool isActiveWeapon = m_Weapon == m_PlayerWeaponsManager.GetActiveWeapon();
 
