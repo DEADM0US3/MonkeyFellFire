@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine.UI;
 
-public class LeaderboardManager : MonoBehaviour
+public class LeaderboardManagerAcero : MonoBehaviour
 {
     public Text topTimesText;
 
@@ -11,7 +11,7 @@ public class LeaderboardManager : MonoBehaviour
 
     public class TimeRecord
     {
-        public GameMode mode;
+        public GameMode mode = GameMode.ModoB;
         public float rawTime;
         public string formattedTime;
 
@@ -26,7 +26,7 @@ public class LeaderboardManager : MonoBehaviour
     // ============================
     // GUARDAR TIEMPO EN TXT
     // ============================
-    public void SaveTime(GameMode mode, float timeInSeconds, string formattedTime)
+    public void SaveTime( float timeInSeconds, string formattedTime, GameMode mode = GameMode.ModoB)
     {
         string filePath = Application.persistentDataPath + "/timestats.txt";
 
@@ -81,7 +81,7 @@ public class LeaderboardManager : MonoBehaviour
     // ============================
     // TOP 10 POR MODO
     // ============================
-    public List<TimeRecord> GetTop10(GameMode mode)
+    public List<TimeRecord> GetTop10(GameMode mode = GameMode.ModoB)
     {
         List<TimeRecord> all = LoadAllTimes();
         List<TimeRecord> filtered = all.FindAll(t => t.mode == mode);
@@ -97,7 +97,7 @@ public class LeaderboardManager : MonoBehaviour
     // ============================
     // MOSTRAR EN UI
     // ============================
-    public void ShowTopTimes(GameMode mode)
+    public void ShowTopTimes(GameMode mode = GameMode.ModoB)
     {
         List<TimeRecord> top = GetTop10(mode);
 

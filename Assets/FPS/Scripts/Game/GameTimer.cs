@@ -10,6 +10,11 @@ public class GameTimer : MonoBehaviour
     public enum GameMode { ModoA, ModoB }
     public GameMode currentMode;
 
+    [ContextMenu("Modo A")]
+    void SetModoA() { currentMode = GameMode.ModoA; }
+
+    [ContextMenu("Modo B")]
+    void SetModoB() { currentMode = GameMode.ModoB; }
     public Text timerText;
 
     private static GameObject persistentCanvas;
@@ -102,7 +107,14 @@ public class GameTimer : MonoBehaviour
     void SaveTimeToFile()
     {
         string filePath = Application.persistentDataPath + "/timestats.txt";
-        string entry = $"{System.DateTime.Now} | {currentMode} | Tiempo: {FormatTime(timer)}\n";
+
+        // Calculamos el tiempo crudo
+        float rawTime = timer;
+        string formattedTime = FormatTime(timer);
+
+        // Guardamos solo lo que LeaderboardManager puede leer
+        string entry = $"{currentMode}|{rawTime}|{formattedTime}\n";
+
         File.AppendAllText(filePath, entry);
     }
 
