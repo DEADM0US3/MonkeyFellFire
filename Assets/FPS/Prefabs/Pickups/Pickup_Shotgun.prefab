@@ -302,6 +302,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8323776800172828795, guid: 31d97e822763d1f4cb769f7e3f7f7333,
+        type: 3}
+      propertyPath: BulletsPerShot
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 8323776800172828795, guid: 31d97e822763d1f4cb769f7e3f7f7333,
+        type: 3}
+      propertyPath: AmmoReloadDelay
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 9178139022947274294, guid: 31d97e822763d1f4cb769f7e3f7f7333,
         type: 3}
       propertyPath: m_Layer

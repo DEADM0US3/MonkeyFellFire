@@ -56,8 +56,8 @@ MonoBehaviour:
     m_Bits: 4294967295
   UseCameraForwardForHit: 1
   MeleeDamage: 10
-  WeaponName: Shotgun
-  WeaponIcon: {fileID: 21300000, guid: 8cbb10368086f014a8b7fc8932e7f436, type: 3}
+  WeaponName: Banana Shotgun
+  WeaponIcon: {fileID: 21300000, guid: 121f2465700aad5449c37b61b7703278, type: 3}
   CrosshairDataDefault:
     CrosshairSprite: {fileID: 21300000, guid: 2962952d6e5ae7342a298d45a3945069, type: 3}
     CrosshairSize: 40
@@ -74,19 +74,19 @@ MonoBehaviour:
   DelayBetweenShots: 0.2
   BulletSpreadAngle: 7
   BulletsPerShot: 24
-  RecoilForce: 1
+  RecoilForce: 1.5
   AimZoomRatio: 0.7
   AimOffset: {x: 0, y: 0.13, z: 0}
   AutomaticReload: 1
   HasPhysicalBullets: 0
-  ClipSize: 30
+  ClipSize: 60
   ShellCasing: {fileID: 0}
   EjectionPort: {fileID: 0}
   ShellCasingEjectionForce: 2
   ShellPoolSize: 1
   AmmoReloadRate: 1.1
   AmmoReloadDelay: 1
-  MaxAmmo: 2
+  MaxAmmo: 6
   AutomaticReleaseOnCharged: 0
   MaxChargeDuration: 1
   AmmoUsedOnStartCharge: 0

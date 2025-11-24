@@ -114,7 +114,7 @@ MonoBehaviour:
   DelayAfterWeaponSwap: 0
   LootPrefab: {fileID: 2529580269645609534, guid: 9973c412032becb4ca116ca08be62edf,
     type: 3}
-  DropRate: 1
+  DropRate: 0.209
   DeathVfx: {fileID: 8950624839484268180, guid: 2a8f5052fe50f7b41b17149abb0f7414,
     type: 3}
   DeathVfxSpawnPoint: {fileID: 381893446485871685}
@@ -132,9 +132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 1895352925869244465}
-  AttackStopDistanceRatio: 0
-  RandomHitSparks:
-  - {fileID: 0}
+  AttackStopDistanceRatio: 0.575
+  RandomHitSparks: []
   OnDetectVfx:
   - {fileID: 0}
   OnDetectSfx: {fileID: 8300000, guid: 25722734eeccba042a18e26e376ca542, type: 3}
@@ -171,7 +170,7 @@ MonoBehaviour:
   Health: {fileID: 6370966072896210225}
   HealthBarImage: {fileID: 5299349968446827641}
   HealthBarPivot: {fileID: 3175718064325614203}
-  HideFullHealthBar: 1
+  HideFullHealthBar: 0
 --- !u!195 &7406548990343174644
 NavMeshAgent:
   m_ObjectHideFlags: 0

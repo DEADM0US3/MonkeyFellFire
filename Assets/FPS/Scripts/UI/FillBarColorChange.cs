@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;   // ← Necesario para TextMeshPro
+
 
 namespace Unity.FPS.UI
 {
     public class FillBarColorChange : MonoBehaviour
     {
-        [Header("Foreground")] [Tooltip("Image for the foreground")]
+        [Header("Foreground")]
+        [Tooltip("Image for the foreground")]
         public Image ForegroundImage;
 
         [Tooltip("Default foreground color")] public Color DefaultForegroundColor;
@@ -13,7 +16,8 @@ namespace Unity.FPS.UI
         [Tooltip("Flash foreground color when full")]
         public Color FlashForegroundColorFull;
 
-        [Header("Background")] [Tooltip("Image for the background")]
+        [Header("Background")]
+        [Tooltip("Image for the background")]
         public Image BackgroundImage;
 
         [Tooltip("Flash background color when empty")]
@@ -22,7 +26,21 @@ namespace Unity.FPS.UI
         [Tooltip("Sharpness for the color change")]
         public Color FlashBackgroundColorEmpty;
 
-        [Header("Values")] [Tooltip("Value to consider full")]
+        [Header("Text (Percentage)")]
+        [Tooltip("Texto que muestra el porcentaje del combustible")]
+        public TextMeshProUGUI PercentageText;
+
+        [Tooltip("Color del texto por defecto")]
+        public Color DefaultTextColor;
+
+        [Tooltip("Color del texto cuando está lleno")]
+        public Color FullTextColor;
+
+        [Tooltip("Color del texto cuando está vacío")]
+        public Color EmptyTextColor;
+
+        [Header("Values")]
+        [Tooltip("Value to consider full")]
         public float FullValue = 1f;
 
         [Tooltip("Value to consider empty")] public float EmptyValue = 0f;
@@ -45,10 +63,14 @@ namespace Unity.FPS.UI
             if (currentRatio == FullValue && currentRatio != m_PreviousValue)
             {
                 ForegroundImage.color = FlashForegroundColorFull;
+                if (PercentageText)
+                    PercentageText.color = FullTextColor;
             }
             else if (currentRatio < EmptyValue)
             {
                 BackgroundImage.color = FlashBackgroundColorEmpty;
+                if (PercentageText)
+                    PercentageText.color = EmptyTextColor;
             }
             else
             {
@@ -56,6 +78,12 @@ namespace Unity.FPS.UI
                     Time.deltaTime * ColorChangeSharpness);
                 BackgroundImage.color = Color.Lerp(BackgroundImage.color, DefaultBackgroundColor,
                     Time.deltaTime * ColorChangeSharpness);
+
+                if (PercentageText)
+                {
+                    PercentageText.color = Color.Lerp(PercentageText.color,
+                        DefaultTextColor, Time.deltaTime * ColorChangeSharpness);
+                }
             }
 
             m_PreviousValue = currentRatio;

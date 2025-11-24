@@ -58,8 +58,8 @@ MonoBehaviour:
     m_Bits: 4294967295
   UseCameraForwardForHit: 1
   MeleeDamage: 10
-  WeaponName: Disc Launcher
-  WeaponIcon: {fileID: 21300000, guid: cab1398a10b307b44b0ffeb0eef23254, type: 3}
+  WeaponName: Lanza-Cocos
+  WeaponIcon: {fileID: 21300000, guid: b0c46e8068cb3c249a84c899249e4044, type: 3}
   CrosshairDataDefault:
     CrosshairSprite: {fileID: 21300000, guid: 14aa1febcf423c84997aa10d7ff64d17, type: 3}
     CrosshairSize: 100
@@ -88,7 +88,7 @@ MonoBehaviour:
   ShellPoolSize: 1
   AmmoReloadRate: 1
   AmmoReloadDelay: 2
-  MaxAmmo: 4
+  MaxAmmo: 5
   AutomaticReleaseOnCharged: 0
   MaxChargeDuration: 1.46
   AmmoUsedOnStartCharge: 1
