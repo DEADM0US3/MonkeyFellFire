@@ -5711,6 +5711,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4160549848294572208, guid: c996b53e9f849234393d1e90f68d1679,
+        type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 8e659c7ee7bbc654d89c5edbe4db3325, type: 3}
     - target: {fileID: 8041970913709386448, guid: c996b53e9f849234393d1e90f68d1679,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -5862,3 +5867,4 @@ SceneRoots:
   - {fileID: 720835990}
   - {fileID: 764843812}
   - {fileID: 2091471541}
+  - {fileID: 173476820}
