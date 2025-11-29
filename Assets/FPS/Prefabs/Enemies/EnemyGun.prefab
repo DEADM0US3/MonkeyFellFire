@@ -114,7 +114,7 @@ MonoBehaviour:
   DelayAfterWeaponSwap: 0
   LootPrefab: {fileID: 2529580269645609534, guid: 9973c412032becb4ca116ca08be62edf,
     type: 3}
-  DropRate: 0.209
+  DropRate: 1
   DeathVfx: {fileID: 8950624839484268180, guid: 2a8f5052fe50f7b41b17149abb0f7414,
     type: 3}
   DeathVfxSpawnPoint: {fileID: 381893446485871685}

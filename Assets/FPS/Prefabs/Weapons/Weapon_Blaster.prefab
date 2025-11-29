@@ -147,9 +147,9 @@ MonoBehaviour:
   ClipSize: 50
   ShellCasingEjectionForce: 2
   ShellPoolSize: 1
-  AmmoReloadRate: 16
+  AmmoReloadRate: 24
   AmmoReloadDelay: 1
-  MaxAmmo: 16
+  MaxAmmo: 24
   AutomaticReleaseOnCharged: 0
   MaxChargeDuration: 2
   AmmoUsedOnStartCharge: 1
