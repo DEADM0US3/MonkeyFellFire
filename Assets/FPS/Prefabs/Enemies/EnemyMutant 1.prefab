@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelfDestructYHeight: -20
   OrientationSpeed: 10
-  PathReachingRadius: 2
+  PathReachingRadius: 6
   DeathDuration: 0
   RandomMovement: 1
   MovementRadius: 1000

@@ -144,9 +144,7 @@ MonoBehaviour:
   AimOffset: {x: 0, y: 0.075, z: 0}
   AutomaticReload: 1
   HasPhysicalBullets: 0
-  ClipSize: 30
-  ShellCasing: {fileID: 2225486910712267859}
-  EjectionPort: {fileID: 8334323006752503713}
+  ClipSize: 50
   ShellCasingEjectionForce: 2
   ShellPoolSize: 1
   AmmoReloadRate: 16
@@ -180,8 +178,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SimultaneousFuelCellsUsage: 0
   FuelCells: []
-  FuelCellUsedPosition: {x: 0, y: 0.1, z: 0}
-  FuelCellUnusedPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &555188489432107117
 MonoBehaviour:
   m_ObjectHideFlags: 0

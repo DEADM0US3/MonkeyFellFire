@@ -29,7 +29,6 @@ public class GameTimer : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            SceneManager.sceneLoaded += OnSceneLoaded;  // <── IMPORTANTE
         }
         else
         {
@@ -37,24 +36,6 @@ public class GameTimer : MonoBehaviour
             return;
         }
 
-        // SINGLETON DEL CANVAS
-        RegisterCanvas();
-    }
-
-    void RegisterCanvas()
-    {
-        var canvasRoot = timerText.transform.root.gameObject;
-
-        if (persistentCanvas == null)
-        {
-            persistentCanvas = canvasRoot;
-            DontDestroyOnLoad(persistentCanvas);
-        }
-        else if (persistentCanvas != canvasRoot)
-        {
-            // Destruir Canvas duplicado
-            Destroy(canvasRoot);
-        }
     }
 
     // CUANDO CAMBIA DE ESCENA, REVISAR SI LA ESCENA TRAE UN TIMER NUEVO
